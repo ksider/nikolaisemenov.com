@@ -1,0 +1,23 @@
+# Nikolai Semenov — Polymer Engineer
+
+> Public professional portfolio of Nikolai Semenov, a polymer scientist and R&D engineer in Belgrade, Serbia. It covers polymer formulation, processing, scale-up, food-contact packaging, consulting, research, and selected software projects.
+
+Use this file to identify the relevant public resource. The detailed profile is a curated textual representation of the portfolio; the main website remains the source for current public information and contact details.
+
+## Portfolio
+
+- [Portfolio home](https://nikolaisemenov.com/): Current professional profile, experience, consulting scope, skills, education, publications, and contact details.
+- [Detailed portfolio profile](https://nikolaisemenov.com/llms-full.txt): LLM-readable summary of the public portfolio content.
+- [Curriculum vitae](https://nikolaisemenov.com/nikolai_semenov_cv.pdf): Downloadable CV.
+
+## Selected work
+
+- [Bpacks](https://bpacks.eco): Biobased and fiber-filled polymer composites for food-contact packaging.
+- [BERЁZKA](https://woodcup.ru): Sustainable-packaging venture co-founded by Nikolai Semenov.
+- [Polymer Scale-up Planner](https://github.com/ksider/IM-planner): Research-planning application for polymer manufacturing processes.
+- [FTIR Viewer](https://vibe.nikolaisemenov.com/ftir): Browser-based viewer for infrared spectra and JCAMP-DX files.
+
+## Optional
+
+- [Google Scholar profile](https://scholar.google.ru/citations?user=QD5YQOMAAAAJ&hl=en): Publications in applied polymer physics and rheology.
+- [ResearchGate profile](https://www.researchgate.net/profile/Nikolay-Semenov): Research profile and publications.

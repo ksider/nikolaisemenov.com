@@ -9,6 +9,8 @@ module.exports = function (eleventyConfig) {
     "favicon.png",
     "favicon.svg",
     "nikolai_semenov_cv.pdf",
+    "llms-full.txt",
+    "llms.txt",
     "pop_up.html",
     "robots.txt",
     "script.js",

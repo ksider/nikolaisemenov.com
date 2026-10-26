@@ -1,0 +1,74 @@
+# Nikolai Semenov — Polymer Engineer
+
+> Nikolai Semenov is a polymer scientist and R&D engineer based in Belgrade, Serbia, with experience spanning polymer physics, rheology, composite formulation, processing, scale-up, and food-contact packaging. He is open to relocation and offers remote, project-based consulting worldwide.
+
+This is a text-first representation of the public professional portfolio at [nikolaisemenov.com](https://nikolaisemenov.com/). It is intended to help an agent answer questions about Nikolai's public background and professional services. It does not replace the linked source pages or external regulations, and it should not be interpreted as legal, regulatory, or product-compliance advice.
+
+## Professional focus
+
+Nikolai works at the boundary of materials science and manufacturing: diagnosing why a polymer material behaves as it does, designing practical formulations and processing routes, and transferring validated laboratory results into repeatable production. His work includes electrorheological suspensions, elastomers, silicone insulators, wood-polymer composites, and biodegradable food-contact packaging based on natural fillers.
+
+Core areas include formulation and compounding; process-window stabilization and scale-up; filled polymer systems and composites; biobased and biodegradable polymers such as TPS, PBS, PBAT, and PLA; lab-to-production technology transfer; material characterization and QC; food-contact compliance support; design of experiments (DoE); root-cause analysis; SOPs, validation protocols, and technical documentation.
+
+## Experience
+
+### Bpacks Lab — Head of R&D and co-founder, Belgrade, Serbia (July 2023–May 2026)
+
+Led applied R&D and product development for biobased and fiber-filled polymer composites used in rigid food-contact packaging. Built the R&D function and laboratory, recruited and led a multidisciplinary team, and worked from formulation design and characterization through compounding, pilot processing, and customer validation.
+
+Key work included developing bark-based composites; tuning polymer matrices, natural fillers, plasticizers, and additives for mechanical performance, moisture management, and processability; establishing processing windows for twin-screw compounding, pelletizing, injection molding, and thermoforming; and supporting equipment selection, commissioning, and modification. The work also included material specifications, validation protocols, and technical documentation in the context of EU food-contact requirements and packaging regulation. Packaging and material optimisation extended berry shelf life by seven days and mushroom shelf life by four days in customer validation work.
+
+### Institute of Applied Mechanics, Russian Academy of Sciences — Senior Researcher, Moscow, Russia (January 2008–March 2023)
+
+Developed polymer formulations, filled composites, elastomers, and functional materials across research and industrial applications. Progressed from Laboratory Assistant to Junior Researcher, Researcher, and Senior Researcher. The work combined polymer physics, rheology, materials characterisation, experimental design, prototype production, process development, and technology transfer.
+
+Research and engineering included electro- and magnetorheological suspensions, field-responsive elastomeric materials, reinforced rubber and polymer composites, mineral-filler surface modification, silicone-insulator and vibration-control applications, and industrial collaboration from laboratory validation to prototypes and process optimisation. Nikolai supervised MSc students, mentored junior researchers, coordinated experimental work, and co-authored scientific and technical publications.
+
+### BERЁZKA — R&D Owner and Co-Founder, Moscow, Russia (June 2020–March 2023)
+
+Co-founded and led applied R&D for a sustainable-packaging venture developing biobased polymer composites for disposable products. The work covered formulation, compounding, injection molding, prototype development, pilot manufacturing, degradation and environmental-stability studies, and mold-filling simulation. The venture was selected for showcase at Expo 2020 as part of the Russian national pavilion.
+
+## Consulting
+
+Nikolai provides hands-on support for polymer, composite, and food-contact-material projects—from an initial formulation question to stable production. Engagements can cover:
+
+- Formulation and compounding: material selection, filler dispersion, additives, rheology, and process-window definition.
+- Scale-up and troubleshooting: extrusion, injection molding, equipment commissioning, root-cause analysis, and production stabilisation.
+- Food-contact and EU compliance support: practical screening against Regulation (EC) 1935/2004, GMP 2023/2006, Plastics Regulation (EU) 10/2011, recycled plastics Regulation (EU) 2022/1616, and packaging requirements under PPWR (EU) 2025/40.
+- Technical documentation and validation: raw-material qualification, QC procedures, declarations of compliance, test plans, and customer-facing technical evidence.
+
+Selected consulting experience includes commissioning industrial compounding lines; supporting polymer-compounding, extrusion, and injection-molding troubleshooting; developing wood-plastic composite, recycled PVC, elastomer, silicone, and flame-retardant formulations; and establishing quality-control and raw-material-qualification workflows.
+
+## Technical capabilities
+
+Characterisation: rotational and dynamic rheology, DSC, DMA, ISO/ASTM mechanical testing, OTR/WVTR, AFM/SEM/optical microscopy, FTIR/Raman spectroscopy, and interferometry.
+
+Processing and scale-up: twin-screw compounding, extrusion, injection molding, thermoforming, lab-to-production transfer, process-window stabilisation, tooling optimisation, and industrial trials.
+
+Quality and compliance: food-contact materials, migration testing, QC procedures, supplier qualification, and material specifications.
+
+Methodology and software: DoE, R, ANOVA, full-factorial and Box-Behnken designs, root-cause analysis, OriginPro, advanced Excel, Autodesk Fusion 360, SolidWorks Plastics, Altair Inspire Mold, MATLAB, and COMSOL.
+
+## Education and publications
+
+PhD (Candidate of Science) in Mechanics of Fluid, Gas and Plasma, focused on rheology, from the Institute of Applied Mechanics of the Russian Academy of Sciences, Moscow (2009–2013). Dissertation: *Rheology and Mechanics of Electrically Controlled Polyimide-Based Nanosuspensions*.
+
+Engineer Degree (MSc equivalent) and Bachelor in Material Science and Technology of New Materials from the Moscow State Academy of Fine Chemical Technology (2003–2009). Graduating work: *Study of Reinforcing Activity of Nanofillers of Different Nature According to the Data of Physical-Mechanical and Dynamic Tests*.
+
+Author or co-author of more than 15 peer-reviewed papers in applied polymer physics and rheology, published from 2012 to 2023. He has also delivered applied courses in polymer-composite rheology, polymer materials science, and atomic-force microscopy; supervised six MSc students; and served on the technical and programme committee of the conference *Mechanics of Composite Materials and Structures, Complex and Heterogeneous Media* from 2010 to 2022.
+
+## Public resources
+
+- [Portfolio home](https://nikolaisemenov.com/): Current public profile and contact details.
+- [Curriculum vitae](https://nikolaisemenov.com/nikolai_semenov_cv.pdf): Downloadable CV.
+- [Google Scholar](https://scholar.google.ru/citations?user=QD5YQOMAAAAJ&hl=en): Publication record.
+- [ResearchGate](https://www.researchgate.net/profile/Nikolay-Semenov): Research profile.
+- [LinkedIn](https://www.linkedin.com/in/nikolay-semenov/): Professional social profile.
+- [Bpacks](https://bpacks.eco): Company website.
+- [BERЁZKA](https://woodcup.ru): Sustainable-packaging project website.
+- [Polymer Scale-up Planner](https://github.com/ksider/IM-planner): Open-source research-planning project.
+- [FTIR Viewer](https://vibe.nikolaisemenov.com/ftir): Infrared-spectrum viewer.
+
+## Contact
+
+For professional or consulting enquiries, email [semenov.ne@gmail.com](mailto:semenov.ne@gmail.com). The public portfolio is in English; Nikolai speaks English professionally and Russian natively.
