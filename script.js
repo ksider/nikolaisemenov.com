@@ -1,10 +1,19 @@
+function syncPageScrollLock(){
+  var hasOpenDialog = document.querySelector('dialog[open]') !== null;
+  document.documentElement.classList.toggle('has-open-dialog', hasOpenDialog);
+  document.body.classList.toggle('has-open-dialog', hasOpenDialog);
+}
+
 function openModal(id){
   var d = document.getElementById(id);
   if (!d) return;
   d.querySelectorAll('iframe[data-src]').forEach(function(f){
     if (!f.src) f.src = f.dataset.src;
   });
-  if (typeof d.showModal === 'function') d.showModal();
+  if (typeof d.showModal === 'function') {
+    d.showModal();
+    syncPageScrollLock();
+  }
 }
 
 document.querySelectorAll('dialog').forEach(function(d){
@@ -12,6 +21,7 @@ document.querySelectorAll('dialog').forEach(function(d){
     d.querySelectorAll('iframe[data-src]').forEach(function(f){
       f.src = ''; // остановить видео при закрытии
     });
+    syncPageScrollLock();
   });
 
   // клик по фону (вне modal-inner) закрывает попап
@@ -129,6 +139,7 @@ document.addEventListener('click', function(e){
   lightboxImg.src = img.src;
   lightboxImg.alt = img.alt || '';
   lightbox.showModal();
+  syncPageScrollLock();
 });
 
 // клик на увеличенной картинке в лайтбоксе — закрывает именно лайтбокс
