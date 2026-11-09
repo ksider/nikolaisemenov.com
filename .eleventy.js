@@ -2,6 +2,7 @@ module.exports = function (eleventyConfig) {
   // Existing public files keep their current URLs in the generated site.
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("black");
+  eleventyConfig.addPassthroughCopy({ "wow.js": "assets/wow.js" });
 
   [
     "CNAME",
