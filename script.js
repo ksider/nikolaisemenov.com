@@ -4,6 +4,12 @@ function syncPageScrollLock(){
   document.body.classList.toggle('has-open-dialog', hasOpenDialog);
 }
 
+function trackModalOpen(id){
+  if (typeof window.op === 'function') {
+    window.op('track', 'modal_opened', { dialog_id: id });
+  }
+}
+
 function openModal(id){
   var d = document.getElementById(id);
   if (!d) return;
@@ -13,6 +19,7 @@ function openModal(id){
   if (typeof d.showModal === 'function') {
     d.showModal();
     syncPageScrollLock();
+    trackModalOpen(id);
   }
 }
 
@@ -140,6 +147,7 @@ document.addEventListener('click', function(e){
   lightboxImg.alt = img.alt || '';
   lightbox.showModal();
   syncPageScrollLock();
+  trackModalOpen('lightbox');
 });
 
 // клик на увеличенной картинке в лайтбоксе — закрывает именно лайтбокс
