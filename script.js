@@ -10,6 +10,16 @@ function trackModalOpen(id){
   }
 }
 
+document.addEventListener('click', function(e){
+  var link = e.target.closest('a[data-openpanel-link]');
+  if (!link || typeof window.op !== 'function') return;
+
+  window.op('track', 'header_link_clicked', {
+    link_name: link.dataset.openpanelLink,
+    link_type: link.dataset.openpanelLinkType
+  });
+});
+
 function openModal(id){
   var d = document.getElementById(id);
   if (!d) return;
