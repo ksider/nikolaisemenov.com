@@ -14,7 +14,7 @@ document.addEventListener('click', function(e){
   var link = e.target.closest('a[data-openpanel-link]');
   if (!link || typeof window.op !== 'function') return;
 
-  window.op('track', 'header_link_clicked', {
+  window.op('track', 'header_' + link.dataset.openpanelLink + '_clicked', {
     link_name: link.dataset.openpanelLink,
     link_type: link.dataset.openpanelLinkType
   });
