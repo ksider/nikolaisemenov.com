@@ -4,6 +4,69 @@ function syncPageScrollLock(){
   document.body.classList.toggle('has-open-dialog', hasOpenDialog);
 }
 
+(function(){
+  var section = document.getElementById('competencies');
+  var ambient = document.querySelector('.competency-ambient');
+  if (!section) return;
+
+  var chips = Array.prototype.slice.call(section.querySelectorAll('.competency-chip'));
+  var supportsScrollTimeline = window.CSS && window.CSS.supports && window.CSS.supports('animation-timeline: view()');
+
+  section.dataset.motionState = supportsScrollTimeline ? 'scroll-timeline' : 'js-fallback';
+  console.info('[competencies-motion] ready', {
+    chips: chips.length,
+    mode: section.dataset.motionState
+  });
+
+  // A coprime step scatters the reveal across the cloud instead of following
+  // DOM order, so line wraps never define the animation direction.
+  chips.forEach(function(chip, index){
+    var revealOrder = (index * 7) % chips.length;
+    chip.style.setProperty('--reveal-order', revealOrder);
+    chip.style.setProperty('--reveal-start', (10 + revealOrder * 1.4) + '%');
+    chip.style.setProperty('--reveal-end', (46 + revealOrder * 1.4) + '%');
+  });
+
+  if (!supportsScrollTimeline) {
+    document.documentElement.classList.add('has-competency-fallback');
+  }
+
+  var hasUserScrolled = false;
+  var hasMaterialized = false;
+  var ticking = false;
+
+  function updateCompetencyMotion(){
+    var rect = section.getBoundingClientRect();
+    var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    var isNearby = rect.top < viewportHeight * 1.16 && rect.bottom > -viewportHeight * .16;
+    var isInRevealZone = rect.top < viewportHeight * .82 && rect.bottom > viewportHeight * .18;
+
+    if (ambient) ambient.classList.toggle('is-active', hasUserScrolled && isNearby);
+
+    if (!supportsScrollTimeline && !hasMaterialized && hasUserScrolled && isInRevealZone) {
+      hasMaterialized = true;
+      section.classList.add('is-materialized');
+      console.info('[competencies-motion] materializing via JS fallback');
+    }
+
+    ticking = false;
+  }
+
+  function requestMotionUpdate(){
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(updateCompetencyMotion);
+  }
+
+  window.addEventListener('scroll', function(){
+    hasUserScrolled = true;
+    requestMotionUpdate();
+  }, { passive: true });
+
+  window.addEventListener('resize', requestMotionUpdate, { passive: true });
+  updateCompetencyMotion();
+})();
+
 function trackModalOpen(id){
   if (typeof window.op === 'function') {
     window.op('track', 'modal_opened', { dialog_id: id });

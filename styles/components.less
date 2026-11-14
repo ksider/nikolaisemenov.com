@@ -76,6 +76,162 @@
   font-weight: 500;
 }
 
+// --- Competencies materialization ---
+// The haze belongs to the viewport, not to the section's box. The page sits
+// above this layer, so it cannot tint or soften the actual text.
+.competency-ambient {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  contain: strict;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 900ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.competency-ambient::before,
+.competency-ambient::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(72px);
+  transform: translate3d(0, 0, 0) scale(.88);
+  will-change: transform;
+}
+
+.competency-ambient::before {
+  width: 44vmax;
+  height: 44vmax;
+  left: -12vmax;
+  top: 17vh;
+  background: radial-gradient(circle, fade(@accent-soft-strong, 72%) 0%, fade(@accent-soft, 36%) 42%, transparent 72%);
+}
+
+.competency-ambient::after {
+  width: 38vmax;
+  height: 38vmax;
+  right: -10vmax;
+  bottom: 5vh;
+  background: radial-gradient(circle, fade(@amber-soft, 62%) 0%, fade(@plum-soft, 30%) 44%, transparent 72%);
+}
+
+.competency-ambient.is-active {
+  opacity: .9;
+}
+
+.competency-ambient.is-active::before {
+  animation: competency-haze-left 8s ease-in-out infinite alternate;
+}
+
+.competency-ambient.is-active::after {
+  animation: competency-haze-right 10s ease-in-out infinite alternate;
+}
+
+.competency-cloud {
+  position: relative;
+  isolation: isolate;
+}
+
+.competency-chip {
+  position: relative;
+  transform-origin: center;
+}
+
+.has-competency-fallback .competency-chip {
+  opacity: .03;
+  filter: blur(24px) saturate(.35);
+  transform: scale(.86);
+  border-color: transparent;
+  background-color: fade(@paper-raised, 8%);
+  box-shadow: 0 0 34px 12px fade(@accent, 10%);
+  transition:
+    opacity 1050ms cubic-bezier(.16, 1, .3, 1),
+    filter 1350ms cubic-bezier(.16, 1, .3, 1),
+    transform 1250ms cubic-bezier(.16, 1, .3, 1),
+    border-color 980ms ease,
+    background-color 980ms ease,
+    box-shadow 1250ms ease;
+  transition-delay: calc(var(--reveal-order, 0) * 72ms);
+  will-change: opacity, filter, transform;
+}
+
+.has-competency-fallback .competency-section.is-materialized .competency-chip {
+  opacity: 1;
+  filter: blur(0) saturate(1);
+  transform: scale(1);
+  border-color: @accent-soft-strong;
+  background-color: @paper-raised;
+  box-shadow: 0 0 0 0 transparent;
+}
+
+@keyframes competency-haze-left {
+  from { transform: translate3d(-2vw, 2vh, 0) scale(.88); }
+  to { transform: translate3d(8vw, -5vh, 0) scale(1.08); }
+}
+
+@keyframes competency-haze-right {
+  from { transform: translate3d(3vw, 3vh, 0) scale(.9); }
+  to { transform: translate3d(-8vw, -7vh, 0) scale(1.12); }
+}
+
+// Chromium/WebKit can bind the materialization directly to the section's
+// scroll progress. The named timeline makes every chip use the same spatial
+// reference, independent of its own line-wrap position.
+@supports (animation-timeline: view()) {
+  .has-competency-motion {
+    timeline-scope: --competency-reveal;
+  }
+
+  .competency-section {
+    view-timeline-name: --competency-reveal;
+    view-timeline-axis: block;
+  }
+
+  .has-competency-motion .competency-chip {
+    animation-name: competency-chip-materialize;
+    animation-duration: 1ms;
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+    animation-timeline: --competency-reveal;
+    animation-range: cover var(--reveal-start, 10%) cover var(--reveal-end, 48%);
+  }
+
+  .has-competency-motion .competency-ambient {
+    animation-name: competency-ambient-materialize;
+    animation-duration: 1ms;
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+    animation-timeline: --competency-reveal;
+    animation-range: cover 0% cover 100%;
+  }
+}
+
+@keyframes competency-chip-materialize {
+  from {
+    opacity: .03;
+    filter: blur(24px) saturate(.35);
+    transform: scale(.86);
+    border-color: transparent;
+    background-color: fade(@paper-raised, 8%);
+    box-shadow: 0 0 34px 12px fade(@accent, 10%);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0) saturate(1);
+    transform: scale(1);
+    border-color: @accent-soft-strong;
+    background-color: @paper-raised;
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+@keyframes competency-ambient-materialize {
+  0%, 100% { opacity: 0; }
+  22%, 68% { opacity: .9; }
+}
+
 // --- Badges ---
 .badge {
   display: inline-block;
