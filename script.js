@@ -67,6 +67,60 @@ function syncPageScrollLock(){
   updateCompetencyMotion();
 })();
 
+(function(){
+  var list = document.querySelector('.consulting-case-list');
+  if (!list) return;
+
+  var cards = Array.prototype.slice.call(list.children);
+  var supportsScrollTimeline = window.CSS && window.CSS.supports && window.CSS.supports('animation-timeline: view()');
+
+  list.dataset.motionState = supportsScrollTimeline ? 'scroll-timeline' : 'js-fallback';
+  console.info('[consulting-motion] ready', {
+    cards: cards.length,
+    mode: list.dataset.motionState
+  });
+
+  cards.forEach(function(card, index){
+    card.style.setProperty('--case-order', index);
+  });
+
+  if (supportsScrollTimeline) return;
+
+  document.documentElement.classList.add('has-consulting-fallback');
+
+  var hasUserScrolled = false;
+  var isMaterialized = false;
+  var ticking = false;
+
+  function updateConsultingMotion(){
+    var rect = list.getBoundingClientRect();
+    var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    var isInRevealZone = rect.top < viewportHeight * .9 && rect.bottom > viewportHeight * .12;
+
+    if (!isMaterialized && hasUserScrolled && isInRevealZone) {
+      isMaterialized = true;
+      list.classList.add('is-materialized');
+      console.info('[consulting-motion] materializing via JS fallback');
+    }
+
+    ticking = false;
+  }
+
+  function requestConsultingUpdate(){
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(updateConsultingMotion);
+  }
+
+  window.addEventListener('scroll', function(){
+    hasUserScrolled = true;
+    requestConsultingUpdate();
+  }, { passive: true });
+
+  window.addEventListener('resize', requestConsultingUpdate, { passive: true });
+  updateConsultingMotion();
+})();
+
 function trackModalOpen(id){
   if (typeof window.op === 'function') {
     window.op('track', 'modal_opened', { dialog_id: id });
