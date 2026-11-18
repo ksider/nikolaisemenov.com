@@ -289,21 +289,31 @@
 }
 
 .card-top--company {
-  align-items: center;
+  align-items: flex-start;
+  margin-bottom: 8px;
 }
 
 .card-company {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  flex: 1 1 0;
   min-width: 0;
   gap: 12px;
 }
 
 .company-logo {
-  width: 42px;
-  height: 42px;
+  width: 64px;
+  height: 64px;
   flex: 0 0 auto;
   object-fit: contain;
+}
+
+.card-company-copy {
+  min-width: 0;
+}
+
+.card-company-copy .card-sub {
+  margin: 0 0 0;
 }
 
 .card-role {

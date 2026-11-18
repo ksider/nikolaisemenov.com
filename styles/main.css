@@ -10,6 +10,9 @@ body {
   color: #1C1E1F;
 }
 .page {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
   max-width: 860px;
   margin: 0 auto;
   padding: 0 24px 96px;
@@ -202,6 +205,144 @@ h1 {
   font-size: 14px;
   font-weight: 500;
 }
+.competency-ambient {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  contain: strict;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.competency-ambient::before,
+.competency-ambient::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(72px);
+  transform: translate3d(0, 0, 0) scale(0.88);
+  will-change: transform;
+}
+.competency-ambient::before {
+  width: 44vmax;
+  height: 44vmax;
+  left: -12vmax;
+  top: 17vh;
+  background: radial-gradient(circle, rgba(205, 229, 227, 0.72) 0%, rgba(227, 240, 239, 0.36) 42%, transparent 72%);
+}
+.competency-ambient::after {
+  width: 38vmax;
+  height: 38vmax;
+  right: -10vmax;
+  bottom: 5vh;
+  background: radial-gradient(circle, rgba(243, 233, 219, 0.62) 0%, rgba(241, 232, 242, 0.3) 44%, transparent 72%);
+}
+.competency-ambient.is-active {
+  opacity: 0.9;
+}
+.competency-ambient.is-active::before {
+  animation: competency-haze-left 8s ease-in-out infinite alternate;
+}
+.competency-ambient.is-active::after {
+  animation: competency-haze-right 10s ease-in-out infinite alternate;
+}
+.competency-cloud {
+  position: relative;
+  isolation: isolate;
+}
+.competency-chip {
+  position: relative;
+  transform-origin: center;
+}
+.has-competency-fallback .competency-chip {
+  opacity: 0.03;
+  filter: blur(24px) saturate(0.35);
+  transform: scale(0.86);
+  border-color: transparent;
+  background-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 34px 12px rgba(31, 111, 107, 0.1);
+  transition: opacity 1050ms cubic-bezier(0.16, 1, 0.3, 1), filter 1350ms cubic-bezier(0.16, 1, 0.3, 1), transform 1250ms cubic-bezier(0.16, 1, 0.3, 1), border-color 980ms ease, background-color 980ms ease, box-shadow 1250ms ease;
+  transition-delay: calc(var(--reveal-order, 0) * 72ms);
+  will-change: opacity, filter, transform;
+}
+.has-competency-fallback .competency-section.is-materialized .competency-chip {
+  opacity: 1;
+  filter: blur(0) saturate(1);
+  transform: scale(1);
+  border-color: #CDE5E3;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 0 transparent;
+}
+@keyframes competency-haze-left {
+  from {
+    transform: translate3d(-2vw, 2vh, 0) scale(0.88);
+  }
+  to {
+    transform: translate3d(8vw, -5vh, 0) scale(1.08);
+  }
+}
+@keyframes competency-haze-right {
+  from {
+    transform: translate3d(3vw, 3vh, 0) scale(0.9);
+  }
+  to {
+    transform: translate3d(-8vw, -7vh, 0) scale(1.12);
+  }
+}
+@supports (animation-timeline: view()) {
+  .has-scroll-motion {
+    timeline-scope: --competency-reveal, --consulting-cases-reveal;
+  }
+  .competency-section {
+    view-timeline-name: --competency-reveal;
+    view-timeline-axis: block;
+  }
+  .has-competency-motion .competency-chip {
+    animation-name: competency-chip-materialize;
+    animation-duration: 1ms;
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+    animation-timeline: --competency-reveal;
+    animation-range: cover var(--reveal-start, 10%) cover var(--reveal-end, 48%);
+  }
+  .has-competency-motion .competency-ambient {
+    animation-name: competency-ambient-materialize;
+    animation-duration: 1ms;
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+    animation-timeline: --competency-reveal;
+    animation-range: cover 0% cover 100%;
+  }
+}
+@keyframes competency-chip-materialize {
+  from {
+    opacity: 0.03;
+    filter: blur(24px) saturate(0.35);
+    transform: scale(0.86);
+    border-color: transparent;
+    background-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 34px 12px rgba(31, 111, 107, 0.1);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0) saturate(1);
+    transform: scale(1);
+    border-color: #CDE5E3;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+@keyframes competency-ambient-materialize {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  22%,
+  68% {
+    opacity: 0.9;
+  }
+}
 .badge {
   display: inline-block;
   padding: 6px 11px;
@@ -245,6 +386,29 @@ h1 {
   gap: 16px;
   flex-wrap: nowrap;
   margin-bottom: 2px;
+}
+.card-top--company {
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+.card-company {
+  display: flex;
+  align-items: flex-start;
+  flex: 1 1 0;
+  min-width: 0;
+  gap: 12px;
+}
+.company-logo {
+  width: 64px;
+  height: 64px;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+.card-company-copy {
+  min-width: 0;
+}
+.card-company-copy .card-sub {
+  margin: 0 0 0;
 }
 .card-role {
   font-family: 'Noto Sans', sans-serif;
@@ -508,6 +672,83 @@ body {
   background: rgba(242, 200, 121, 0.09);
   border-color: rgba(242, 200, 121, 0.45);
   transform: translateY(-2px);
+}
+.consulting-case-list li:nth-child(odd) {
+  --case-enter-x: -56vw;
+}
+.consulting-case-list li:nth-child(even) {
+  --case-enter-x: 56vw;
+}
+.consulting-case-list li:nth-child(1) {
+  --case-reveal-start: 6%;
+  --case-reveal-end: 30%;
+}
+.consulting-case-list li:nth-child(2) {
+  --case-reveal-start: 10%;
+  --case-reveal-end: 34%;
+}
+.consulting-case-list li:nth-child(3) {
+  --case-reveal-start: 20%;
+  --case-reveal-end: 44%;
+}
+.consulting-case-list li:nth-child(4) {
+  --case-reveal-start: 24%;
+  --case-reveal-end: 48%;
+}
+.consulting-case-list li:nth-child(5) {
+  --case-reveal-start: 34%;
+  --case-reveal-end: 58%;
+}
+.consulting-case-list li:nth-child(6) {
+  --case-reveal-start: 38%;
+  --case-reveal-end: 62%;
+}
+@supports (animation-timeline: view()) {
+  .consulting-case-list {
+    view-timeline-name: --consulting-cases-reveal;
+    view-timeline-axis: block;
+  }
+  .has-consulting-motion .consulting-case-list li {
+    animation-name: consulting-case-converge;
+    animation-duration: 1ms;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    animation-timeline: --consulting-cases-reveal;
+    animation-range: cover var(--case-reveal-start, 8%) cover var(--case-reveal-end, 44%);
+  }
+}
+.has-consulting-fallback .consulting-case-list li {
+  opacity: 0.04;
+  filter: blur(18px) saturate(0.55);
+  translate: var(--case-enter-x) 0;
+  scale: 0.92;
+  transition: opacity 950ms cubic-bezier(0.16, 1, 0.3, 1), filter 1150ms cubic-bezier(0.16, 1, 0.3, 1), translate 1250ms cubic-bezier(0.16, 1, 0.3, 1), scale 1250ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--case-order, 0) * 90ms);
+  will-change: opacity, filter, translate, scale;
+}
+.has-consulting-fallback .consulting-case-list.is-materialized li {
+  opacity: 1;
+  filter: blur(0) saturate(1);
+  translate: 0 0;
+  scale: 1;
+}
+@keyframes consulting-case-converge {
+  from {
+    opacity: 0.04;
+    filter: blur(18px) saturate(0.55);
+    translate: var(--case-enter-x) 0;
+    scale: 0.92;
+  }
+  72% {
+    opacity: 0.84;
+    filter: blur(3px) saturate(0.9);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0) saturate(1);
+    translate: 0 0;
+    scale: 1;
+  }
 }
 .consulting-next-step {
   grid-column: 1 / -1;
@@ -1208,6 +1449,13 @@ dialog.lightbox-dialog .modal-close:hover {
     gap: 8px 12px;
     flex-wrap: wrap;
   }
+  .card-company {
+    gap: 10px;
+  }
+  .company-logo {
+    width: 52px;
+    height: 52px;
+  }
   .card-intro {
     margin-bottom: 12px;
   }
@@ -1273,6 +1521,12 @@ dialog.lightbox-dialog .modal-close:hover {
     line-height: 1.5;
     border-radius: 20px;
   }
+  .consulting-case-list li:nth-child(odd) {
+    --case-enter-x: -48vw;
+  }
+  .consulting-case-list li:nth-child(even) {
+    --case-enter-x: 48vw;
+  }
   .consulting-case-list li::before {
     left: 14px !important;
   }
@@ -1312,5 +1566,28 @@ dialog.lightbox-dialog .modal-close:hover {
   }
   .side-nav {
     display: none;
+  }
+  .competency-ambient {
+    display: none;
+  }
+  .has-competency-motion .competency-chip,
+  .has-competency-fallback .competency-chip {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    border-color: #CDE5E3;
+    background: #FFFFFF;
+    box-shadow: none;
+    animation: none;
+    transition: none;
+  }
+  .has-consulting-motion .consulting-case-list li,
+  .has-consulting-fallback .consulting-case-list li {
+    opacity: 1;
+    filter: none;
+    translate: 0 0;
+    scale: 1;
+    animation: none;
+    transition: none;
   }
 }
