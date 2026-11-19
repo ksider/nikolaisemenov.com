@@ -15,7 +15,7 @@
   font-weight: 500;
   font-size: 17px;
   color: @ink-soft;
-  margin: 0 0 18px;
+  margin: 0 0 0;
 }
 
 .highlight {
@@ -77,10 +77,15 @@
   margin-bottom: 20px;
 }
 
+.hero-contact-links {
+  flex-basis: 100%;
+  min-width: 0;
+}
+
 .meta-item {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  // gap: 6px;
   font-size: 14px;
   color: @ink-soft;
   text-decoration: none;
@@ -89,6 +94,14 @@
 .meta-item svg {
   color: @slate;
   flex: 0 0 auto;
+}
+
+.meta-item-copy {
+  min-width: 0;
+}
+
+.meta-availability::before {
+  content: ' · ';
 }
 
 .meta-item a {

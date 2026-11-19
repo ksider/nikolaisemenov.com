@@ -137,6 +137,77 @@ document.addEventListener('click', function(e){
   });
 });
 
+(function(){
+  var hero = document.querySelector('.hero');
+  var footer = document.getElementById('contact');
+  var email = document.getElementById('floatingEmail');
+  if (!hero || !footer || !email) return;
+
+  var home = document.createComment('floating email home');
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var docked = false;
+  var ticking = false;
+
+  email.parentNode.insertBefore(home, email);
+  document.documentElement.classList.add('js-email-dock');
+  document.body.appendChild(email);
+
+  function animateMove(from, to){
+    if (reduceMotion || !from.width || !to.width || typeof email.animate !== 'function') return;
+
+    email.animate([
+      { transform: 'translate(' + (from.left - to.left) + 'px, ' + (from.top - to.top) + 'px)' },
+      { transform: 'translate(0, 0)' }
+    ], {
+      duration: 280,
+      easing: 'cubic-bezier(.22, 1, .36, 1)'
+    });
+  }
+
+  function dockEmail(){
+    var from = email.getBoundingClientRect();
+    home.parentNode.insertBefore(email, home.nextSibling);
+    email.classList.remove('is-visible');
+    email.classList.add('is-docked');
+    docked = true;
+    animateMove(from, email.getBoundingClientRect());
+  }
+
+  function undockEmail(shouldShow){
+    var from = email.getBoundingClientRect();
+    email.classList.remove('is-docked');
+    document.body.appendChild(email);
+    email.classList.toggle('is-visible', shouldShow);
+    docked = false;
+    animateMove(from, email.getBoundingClientRect());
+  }
+
+  function updateEmailDock(){
+    var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    var heroHasPassed = hero.getBoundingClientRect().bottom <= 0;
+    var footerHasReachedDock = footer.getBoundingClientRect().top <= viewportHeight - 120;
+
+    if (footerHasReachedDock && !docked) {
+      dockEmail();
+    } else if (!footerHasReachedDock && docked) {
+      undockEmail(heroHasPassed);
+    }
+
+    if (!docked) email.classList.toggle('is-visible', heroHasPassed);
+    ticking = false;
+  }
+
+  function requestEmailDockUpdate(){
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(updateEmailDock);
+  }
+
+  window.addEventListener('scroll', requestEmailDockUpdate, { passive: true });
+  window.addEventListener('resize', requestEmailDockUpdate, { passive: true });
+  updateEmailDock();
+})();
+
 function openModal(id){
   var d = document.getElementById(id);
   if (!d) return;

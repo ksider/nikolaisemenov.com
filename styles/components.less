@@ -60,6 +60,45 @@
   min-width: 0;
 }
 
+.education-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+  color: @slate;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.hero-credential {
+  margin: 2px 0 18px;
+}
+
+.education-link svg {
+  flex: 0 0 auto;
+}
+
+.education-link span {
+  padding-bottom: 2px;
+  border-bottom: 1px dashed fade(@slate, 65%);
+}
+
+.education-link:hover {
+  color: @accent-dark;
+}
+
+.education-link:hover span {
+  border-bottom-color: currentColor;
+}
+
+.education-link:focus-visible {
+  outline: 2px solid @accent;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 // 
 // TAGS & BADGES
 // 
@@ -660,9 +699,9 @@ body {
   font-size: 13.5px;
 }
 
-.consulting-next-step .footer-links { 
-  //flex: 0 0 auto; 
-  }
+// .consulting-next-step .footer-links { 
+//   // flex: 0 0 auto; 
+//   }
 
 .consulting-next-step .btn-primary { background: #F2C879; color: @ink; }
 .consulting-next-step .btn-primary:hover { background: #FFD993; }
@@ -780,6 +819,69 @@ ul.achv-list li::before {
   color: @ink;
 }
 
+.callout details {
+  margin-top: 4px;
+}
+
+.callout summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  width: fit-content;
+  padding: 3px 2px 0px;
+  color: @accent-dark;
+  font-family: @font-display;
+  font-size: 16px;
+  line-height: 1.45;
+  cursor: pointer;
+  list-style: none;
+  border-bottom: 1px dashed currentColor;
+  transition: color 160ms ease, transform 160ms ease;
+}
+
+.callout summary::-webkit-details-marker {
+  display: none;
+}
+
+// .callout summary::before {
+//   content: '☞';
+//   font-family: 'Noto Emoji', sans-serif;
+//   font-size: 14px;
+//   line-height: 1;
+//   transform: rotate(-12deg);
+// }
+
+.callout summary::after {
+  content: '↓';
+  font-family: @font-mono;
+  font-size: 12px;
+  line-height: 1;
+  transition: transform 160ms ease;
+}
+
+.callout summary:hover {
+  color: @accent;
+  transform: translateX(2px);
+}
+
+.callout summary:focus-visible {
+  outline: 2px solid @accent;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.callout details[open] summary {
+  margin-bottom: 14px;
+}
+
+.callout details[open] summary::after {
+  transform: rotate(180deg);
+}
+
+.callout details > p:last-child {
+  margin-bottom: 0;
+}
+
 // 
 // LINK BUTTON
 // 
@@ -884,6 +986,86 @@ footer p {
   color: @slate;
   margin: 0 0 20px;
   font-size: 14.5px;
+}
+
+.site-footer {
+  margin-top: 8px;
+  padding: 42px 0 64px;
+  border-top: 1px solid @line;
+  text-align: left;
+}
+
+.site-footer-inner {
+  max-width: 620px;
+}
+
+.site-footer-kicker {
+  margin: 0 0 8px;
+  font-family: @font-mono;
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: @slate;
+}
+
+.site-footer h2 {
+  margin-bottom: 18px;
+}
+
+.site-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+}
+
+.footer-contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: @accent-dark;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.footer-contact-link span {
+  border-bottom: 1px dashed fade(@accent-dark, 58%);
+}
+
+.footer-contact-link:hover span {
+  border-bottom-color: currentColor;
+}
+
+.footer-contact-link:focus-visible {
+  outline: 2px solid @accent;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.js-email-dock .floating-email:not(.is-docked) {
+  position: fixed;
+  right: 28px;
+  bottom: 24px;
+  z-index: 20;
+  padding: 10px 13px;
+  border: 1px solid @accent-soft-strong;
+  border-radius: 999px;
+  background: fade(@paper-raised, 94%);
+  box-shadow: 0 8px 24px rgba(28, 30, 31, .12);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: opacity 180ms ease, transform 240ms ease, box-shadow 180ms ease;
+}
+
+.js-email-dock .floating-email.is-visible:not(.is-docked) {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.js-email-dock .floating-email.is-visible:not(.is-docked):hover {
+  box-shadow: 0 12px 28px rgba(28, 30, 31, .16);
 }
 
 .btn-primary {
