@@ -147,7 +147,7 @@ h1 {
 }
 .hero {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   padding: 64px 0 40px;
   margin-bottom: 48px;
 }
@@ -155,21 +155,27 @@ h1 {
   position: relative;
 }
 .avatar {
+  position: relative;
   flex: 0 0 auto;
   width: 250px;
   height: 250px;
-  border-radius: 50%;
-  border: 2px dashed #D6D2C8;
-  padding: 5px;
+  padding: 7px;
   display: flex;
+}
+.avatar::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  background: url('assets/avatar-handdrawn-ring.png') center / 100% 100% no-repeat;
+  pointer-events: none;
 }
 .avatar-inner {
   position: relative;
+  z-index: 1;
   width: 100%;
   height: 100%;
   border-radius: 50%;
   overflow: hidden;
-  background: #E9E4E0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1026,6 +1032,74 @@ footer p {
   margin: 0 0 20px;
   font-size: 14.5px;
 }
+.site-footer {
+  margin-top: 8px;
+  padding: 42px 0 64px;
+  border-top: 1px solid #E6E3DC;
+  text-align: left;
+}
+.site-footer-inner {
+  max-width: 620px;
+}
+.site-footer-kicker {
+  margin: 0 0 8px;
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6B7178;
+}
+.site-footer h2 {
+  margin-bottom: 18px;
+}
+.site-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+}
+.footer-contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #154E4B;
+  font-size: 14px;
+  text-decoration: none;
+}
+.footer-contact-link span {
+  border-bottom: 1px dashed rgba(21, 78, 75, 0.58);
+}
+.footer-contact-link:hover span {
+  border-bottom-color: currentColor;
+}
+.footer-contact-link:focus-visible {
+  outline: 2px solid #1F6F6B;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+.js-email-dock .floating-email:not(.is-docked) {
+  position: fixed;
+  right: 28px;
+  bottom: 24px;
+  z-index: 20;
+  padding: 10px 13px;
+  border: 1px solid #CDE5E3;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 8px 24px rgba(28, 30, 31, 0.12);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: opacity 180ms ease, transform 240ms ease, box-shadow 180ms ease;
+}
+.js-email-dock .floating-email.is-visible:not(.is-docked) {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.js-email-dock .floating-email.is-visible:not(.is-docked):hover {
+  box-shadow: 0 12px 28px rgba(28, 30, 31, 0.16);
+}
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -1450,6 +1524,10 @@ dialog.lightbox-dialog .modal-close:hover {
 .meta-row {
   margin-bottom: 20px;
 }
+.hero-contact-links {
+  flex-basis: 100%;
+  min-width: 0;
+}
 .meta-item {
   display: inline-flex;
   align-items: center;
@@ -1460,6 +1538,12 @@ dialog.lightbox-dialog .modal-close:hover {
 .meta-item svg {
   color: #6B7178;
   flex: 0 0 auto;
+}
+.meta-item-copy {
+  min-width: 0;
+}
+.meta-availability::before {
+  content: ' · ';
 }
 .meta-item a {
   color: inherit;
@@ -1518,6 +1602,34 @@ dialog.lightbox-dialog .modal-close:hover {
   }
   .meta-row {
     justify-content: center;
+  }
+  .hero-contact-links {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    gap: 12px;
+    justify-content: center;
+    width: 100%;
+  }
+  .meta-row > .meta-item {
+    flex-basis: 100%;
+    justify-content: center;
+    font-size: 13px;
+    min-width: 0;
+    max-width: 100%;
+    flex-wrap: wrap;
+    overflow-wrap: anywhere;
+  }
+  .meta-row > .meta-item .meta-item-copy {
+    flex: 0 1 auto;
+    min-width: 0;
+    font-size: 13px;
+  }
+  .meta-availability {
+    display: block;
+    margin-top: 3px;
+  }
+  .meta-availability::before {
+    content: '';
   }
   .section-head {
     margin-bottom: 14px;
@@ -1578,6 +1690,23 @@ dialog.lightbox-dialog .modal-close:hover {
     font-size: 25px;
     white-space: normal;
     overflow-wrap: anywhere;
+  }
+  .site-footer {
+    padding: 34px 0 48px;
+    text-align: center;
+  }
+  .site-footer-inner {
+    margin: 0 auto;
+  }
+  .site-footer-links {
+    justify-content: center;
+    gap: 10px 14px;
+  }
+  .js-email-dock .floating-email:not(.is-docked) {
+    right: 14px;
+    bottom: 14px;
+    left: 14px;
+    justify-content: center;
   }
   .consulting-offer-inner {
     padding: 44px 18px 42px;
