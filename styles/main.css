@@ -5,9 +5,20 @@ html {
   scroll-behavior: smooth;
 }
 body {
+  position: relative;
   margin: 0;
-  background: #FAFAF8;
+  background-color: #FAFAF8;
   color: #1C1E1F;
+}
+body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: url('assets/Grain-Texture-01.png') center top no-repeat;
+  background-size: 600px 600px;
+  opacity: 0.1;
 }
 .page {
   position: relative;

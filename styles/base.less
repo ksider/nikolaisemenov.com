@@ -14,9 +14,21 @@ html {
 }
 
 body {
+  position: relative;
   margin: 0;
-  background: @paper;
+  background-color: @paper;
   color: @ink;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: url('assets/Grain-Texture-01.png') center top no-repeat;
+  background-size: 600px 600px;
+  opacity: .1;
 }
 
 .page {
