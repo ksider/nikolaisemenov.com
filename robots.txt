@@ -3,4 +3,4 @@ Allow: /
 Disallow: /assets/
 
 
-Sitemap: https://nikolaysemenov.ru/sitemap.xml
+Sitemap: https://nikolaisemenov.com/sitemap.xml
